@@ -10,13 +10,14 @@ You can use this widget to screen your myspace events in wordpress without using
 
 == Description ==
 
-If you're like me, you'll like to keep up with what your friends are up to but don't always have time to check Facebook. Or maybe you're just somewhere where access to the Facebook site is blocked. Work, school, etc.
+In wordpress there are no plugin that allow to pick your myspace events and put them into a page or in sidebar!
+This widget use simplehtmldom library to scape http://www.myspace.com/<yourusername>/shows (in the current version) to get your events and date!
+As of version 0.9, you can get your events without insert any myspace login/key data. I hope that this could be possible in the future.
+This plugin uses greatly the structure of the myspace page, you may need to frequently update the plugin to synchronize it with the new version of the page made ​​by myspace.
+Tested from an Italian Ip to italian myspace, it should not works for foreign country.
+Tested by an Italian IP to the Italian version of myspace.
+The policies applied by MySpace may change from country to country so maybe necessary to code a wrapper.
 
-This is a simple solution to bring the Facebook data to you. Using the dashboard widgets available in WordPress 2.5 and above, this plugin will process your Friends status updates RSS feed, your posted items feeds and/or your Facebook notifications feed, and add a widget for each to your WordPress admin dashboard. So now you can keep up with whats going on in your friends lives from anywhere without needing to access Facebook!
-
-You can also customize the height and width of the widget, and the number of items displayed.  Due to changes in the way WordPress handles widget sizes, the options you see will differ depending on what version of WordPress you are using.
-
-As of version 0.9.8, you can now display your feeds on your blog sidebar! The widgets will appear on your appearance->widgets page once you have activated the plugin.
 
 == Installation ==
 
@@ -36,6 +37,10 @@ Get your Myspace Username visiting your myspace address http://www.myspace.com/<
 = What is limit? =
 
 It's the max number of events that you should allow to screen in the sidebar
+
+= How can i customize the events color set? =
+
+You can modify the events_widget_css.css file in the plugin directory!
 
 == Screenshots ==
 
