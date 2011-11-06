@@ -55,8 +55,6 @@ class MyspaceEvents extends WP_Widget {
    
    /*simple html dom v*/
    function myspace_events_simple($user,$noevent_text,$limit,$bg,$color){
-	
-	//error_reporting(0);
 	require(dirname( __FILE__ )."/simple_html_dom.php");
 	$html = file_get_html('http://www.myspace.com/'.$user.'/shows');
 	$lives = $html->find('.eventsContainer',0);
@@ -130,6 +128,11 @@ function myspace_events_widget_css() { ?>
 <?php }
 
 add_action( 'wp_head', 'myspace_events_widget_css' );
-register_widget('MyspaceEvents');
+add_action('widgets_init', 'register_myspace_widget');
+
+function register_myspace_widget() {
+    register_widget('MyspaceEvents');
+}
+
 
 ?>
