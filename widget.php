@@ -1,17 +1,25 @@
 <?
-/*---------------------------------------------------------------------------------*/
-/* Myspace widget */
-/*---------------------------------------------------------------------------------*/
+/*
+Plugin Name: Myspace Events Widget
+Plugin URI: http://code.google.com/p/myspaceeventswidget/
+Description: Display your myspace events on your sidebar in wordpress 
+Version: 0.9
+Author: Andrea Pola
+*/
 
 /*******************************************************************************
-Version: 0.90 ($Rev: 1 $)
-Website: http://sourceforge.net/projects/simplehtmldom/
-Author: Andrea Pola <andrea.pola@email.it>
-Acknowledge: http://sourceforge.net/projects/simplehtmldom/
-Contributions by:
 Licensed under The MIT License
 Redistributions of files must retain the above copyright notice.
 *******************************************************************************/
+
+// **********************************************************************
+// This program is distributed in the hope that it will be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+// **********************************************************************
+
+// Changelog:
+// 0.9 Inital Release
 
 /* version 0.9 no-api */
 class MyspaceEvents extends WP_Widget {
@@ -109,7 +117,7 @@ class MyspaceEvents extends WP_Widget {
    
 }
 
-function widget_prodotti_css() { ?>
+function myspace_events_widget_css() { ?>
 
 	<style type="text/css">
 		/* <![CDATA[ */
@@ -121,7 +129,7 @@ function widget_prodotti_css() { ?>
     
 <?php }
 
-add_action( 'wp_head', 'widget_prodotti_css' );
+add_action( 'wp_head', 'myspace_events_widget_css' );
 register_widget('MyspaceEvents');
 
 ?>
