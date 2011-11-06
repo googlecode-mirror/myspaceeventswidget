@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+
+.widget_myspaceevents  .entryDate {
+    border: 1px solid #666666;
+    float: left;
+    margin: 0 5px 0 0;
+    width: 50px;
+}
+
+.widget_myspaceevents .entryDate .month {
+    color: #FFFFFF;
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 0 0 2px;
+    text-align: center;
+    text-transform: uppercase;
+    width: 50px;
+	height:15px;
+	background:#ef3f2b;
+}
+
+.widget_myspaceevents .entryDate .day {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    line-height: 24px;
+    text-align: center;
+    width: 50px;
+	background:#666;
+}
+
+.widget_myspaceevents .desc {
+	display:block;
+	clear:both;
+	margin-top:10px;
+	margin-bottom:10px;
+}
