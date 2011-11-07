@@ -1,4 +1,4 @@
-=== Facebook Dashboard Widget ===
+=== Myspace Events Widget ===
 Contributors: Andrea Pola
 Project link: http://code.google.com/p/myspaceeventswidget/
 Tags: myspace widget, myspace,myspace events, myspace on wordpress
