@@ -32,8 +32,12 @@
 }
 
 .widget_myspaceevents .desc {
-	display:block;
-	clear:both;
+	display:inline;
 	margin-top:10px;
 	margin-bottom:10px;
+}
+
+.widget_myspaceevents span.location {
+	display:block;
+	clear:both;
 }

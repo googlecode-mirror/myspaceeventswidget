@@ -3,7 +3,7 @@
 Plugin Name: Myspace Events Widget
 Plugin URI: http://code.google.com/p/myspaceeventswidget/
 Description: Display your myspace events on your sidebar in wordpress 
-Version: 0.9
+Version: 0.9.5
 Author: Andrea Pola
 */
 
@@ -22,6 +22,9 @@ Redistributions of files must retain the above copyright notice.
 // 0.9 Inital Release
 
 /* version 0.9 no-api */
+
+require(dirname( __FILE__ )."/simple_html_dom.php");
+
 class MyspaceEvents extends WP_Widget {
 
    function MyspaceEvents() {
@@ -55,10 +58,15 @@ class MyspaceEvents extends WP_Widget {
    
    /*simple html dom v*/
    function myspace_events_simple($user,$noevent_text,$limit,$bg,$color){
-	require(dirname( __FILE__ )."/simple_html_dom.php");
+	  
+	function remove_link($element) {
+        if ($element->tag=='href')
+                $element->outertext = $this->get_map($this->get_address($addressurl));
+	}    
+	   
 	$html = file_get_html('http://www.myspace.com/'.$user.'/shows');
-	$lives = $html->find('.eventsContainer',0);
-				
+	$lives = $html->find('.eventsContainer',0);		
+	$addressurl;	
 				if (sizeof($lives) < "1" ) {
 					$output = "<li class='noevent'>".$noevent_text."</li>";
 				}
@@ -68,8 +76,12 @@ class MyspaceEvents extends WP_Widget {
 						$output .= "<li>";
 						$output .= $live->find('.entryDate',0);
 						$dettagli = $live->find('.details',0);
-						$output .= $dettagli->find('h4',0);
+						$output .= "<h4>".$dettagli->find('h4',0)->first_child()."</h4>";
+						$tmp = $dettagli->find('h4 a',0);
+						$addressurl = $tmp->href;
 						$output .= "<span class='desc'>".$dettagli->find('p',0)->plaintext."</span>";	
+						
+						$output .="<span class='location'><a href='".$this->get_map($this->get_address($addressurl))."' target='_blank' title='".__('See in the Map:','myspace_events_widget')."'>".$this->get_address($addressurl)."</a></span>";
 						$output .= "</li>";				
 						$i++;
 						if ($i == $limit) break;
@@ -77,6 +89,27 @@ class MyspaceEvents extends WP_Widget {
 				}
 				return $output;
 	   
+   }
+   
+   function get_address($urltoparse){
+	$html = file_get_html($urltoparse);
+	$location = $html->find('div.location div',0);	
+	
+		foreach($location->find('span') as $addrpiece){
+			if(isset($addrpiece->itemprop)) $output .= $addrpiece->plaintext." ";	
+		}
+				
+	return $output;
+	   
+   }
+   
+   function get_map($address){
+		$local=trim($address);
+		$local=str_replace(" ","+",$local);
+		$url="http://maps.google.com/maps?f=q&source=s_q&hl=it&q=";
+		$url.=$local;
+		$url.="&ie=UTF8&";
+		return $url;
    }
     
 	/*Wordpress Widget*/
@@ -116,15 +149,14 @@ class MyspaceEvents extends WP_Widget {
 }
 
 function myspace_events_widget_css() { ?>
-
+	<?php $x = WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__));?>
 	<style type="text/css">
 		/* <![CDATA[ */
 		/* iPhone CSS */
 		<?php $css = dirname( __FILE__ ) . '/myspace_events_widget.css';
 		if ( is_file( $css ) ) require $css; ?>
 		/* ]]> */
-	</style>
-    
+	</style> 
 <?php }
 
 add_action( 'wp_head', 'myspace_events_widget_css' );
