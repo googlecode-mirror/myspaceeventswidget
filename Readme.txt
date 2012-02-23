@@ -18,6 +18,8 @@ Tested from an Italian Ip to italian myspace, it should not works for foreign co
 Tested by an Italian IP to the Italian version of myspace.
 The policies applied by MySpace may change from country to country so maybe necessary to code a wrapper.
 
+***New cache mechanism introduced from v 0.9.8, you may have permission to write on file system to use it!***
+
 
 == Installation ==
 
@@ -50,3 +52,4 @@ You can modify the events_widget_css.css file in the plugin directory!
 
 = 0.9 =
 *Beta Intial release  (6/11/11)
+*Introduced cache (23/02/12)
